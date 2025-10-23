@@ -3,6 +3,7 @@ float rand(float val, float seed) {
 }
 
 // this function happens for every pixel!
+// this shader happens first
 void mainImage(out vec4 fragColor, in vec2 fragCoord) {
     vec2 coord = vec2(fragCoord.x, fragCoord.y) / iResolution.xy;
 
