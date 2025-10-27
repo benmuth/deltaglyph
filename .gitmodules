@@ -1,0 +1,4 @@
+[submodule "ghostty"]
+	path = ghostty
+	url = https://github.com/jmou/ghostty.git
+	branch = claude/extend-shader-api-011CUSgJ2XLcG2ab4WGFtKjL
