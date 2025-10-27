@@ -2,10 +2,11 @@ float rand(float val, float seed) {
     return cos(val * sin(val * seed) * seed);
 }
 
-// this function happens for every pixel!
-// this shader happens first
+// Main shader, detects collision
 void mainImage(out vec4 fragColor, in vec2 fragCoord) {
-    vec2 coord = vec2(fragCoord.x, fragCoord.y) / iResolution.xy;
+    vec4 sentinelColor = vec4(0.1, 0.3, 0.3, 0.7);
+
+    vec2 coord = fragCoord / iResolution.xy;
 
     // sample a pixel from ghostty's pixel buffer
     vec4 color = texture(iChannel0, coord);
@@ -26,7 +27,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
         float hor_offset = (iFrame % p_fs) / float(p_fs) + (rand(i, i+3) - 0.5)*0.3;
         if (fragCoord.y > vert_offset && fragCoord.y < vert_offset + thickness && (coord.x < hor_offset && coord.x > hor_offset - length)) {
             if (distance(color, magenta) < 0.1) {
-                fragColor = vec4(0.0, 0.0, 0.0, 1.0);
+                fragColor = sentinelColor;
             } else {
                 fragColor = vec4(1.0, 1.0, 0.0, 1.0);
             }
