@@ -1,16 +1,15 @@
 // Every corner pixel of an n-pixel grid checks its cell for a sentinel color, and sets itself to a
 // sentinel color if found. This shader runs second.
 void mainImage(out vec4 fragColor, in vec2 fragCoord) {
-    
     vec4 sentinelColor = vec4(0.1, 0.3, 0.3, 0.7);
 
-    vec2 coord = fragCoord.xy / iResolution.xy;
+    vec2 coord = fragCoord / iResolution.xy;
 
     // sample a pixel from ghostty's pixel buffer
     vec4 color = texture(iChannel0, coord);
 
     fragColor = color;
-    if (fragCoord.x < 40. && fragCoord.x > 20 && fragCoord.y < 20.) {
+    if (fragCoord.x > 20. && fragCoord.x < 40. && fragCoord.y < 20.) {
         fragColor = vec4(1.0, 1.0, 0.0, 1.0);
     }
 
