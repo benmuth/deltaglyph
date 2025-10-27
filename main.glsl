@@ -11,8 +11,6 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
     // sample a pixel from ghostty's pixel buffer
     vec4 color = texture(iChannel0, coord);
 
-    // without this, behavior is unpredictable
-    // sometimes nothing happens, something the whole window changes to a solid color
     fragColor = color;
 
     // helix's cursor isn't rendering as pure #FF00FFFF, so we try to match the actual shade here
